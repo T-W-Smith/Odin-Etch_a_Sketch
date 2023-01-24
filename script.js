@@ -1,5 +1,9 @@
 let gridSize = 16;
 
+let isMouseDown = false;
+document.body.onmousedown = () => (isMouseDown = true)
+document.body.onmouseup = () => (isMouseDown = false)
+
 const grids = document.getElementById('grids');
 const sizeBtn = document.getElementById('sizeBtn');
 
@@ -13,7 +17,8 @@ function displayGrid() {
     {
         const div = document.createElement('div');
         div.setAttribute('id', 'gridBox');
-        div.addEventListener('mouseover', changeColors);
+        div.addEventListener('mousedown', changeColors);
+        div.addEventListener('mouseover', changeColorsHover);
         grids.appendChild(div);
     }
 }
@@ -26,6 +31,13 @@ function removeGrid() {
 
 function changeColors(e) {
     e.target.style.backgroundColor = 'black';
+}
+
+function changeColorsHover(e) {
+    if (isMouseDown)
+    {
+        e.target.style.backgroundColor = 'black';
+    }
 }
 
 function changeGridSize() {
