@@ -6,7 +6,8 @@ const sizeBtn = document.getElementById('sizeBtn');
 sizeBtn.addEventListener('click', changeGridSize);
 
 function displayGrid() {
-    grids.style.gridTemplateColumns = 'repeat(' + gridSize + ', 25px [col-start])';
+    grids.style.gridTemplateColumns = 'repeat(' + gridSize + ', 2fr)';
+    grids.style.gridTemplateRows = 'repeat(' + gridSize + ', 2fr)';
     
     for (i = 1; i < (gridSize * gridSize) + 1; i++)
     {
@@ -29,7 +30,7 @@ function changeColors(e) {
 
 function changeGridSize() {
     gridSize = prompt('How big?');
-    if(gridSize > 100){
+    if(gridSize > 64){
         console.log('Too big of a number');
     }
     else if(gridSize < 1){
