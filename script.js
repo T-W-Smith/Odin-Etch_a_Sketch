@@ -41,16 +41,23 @@ function removeGrid() {
 
 function changeColors(e) {
     if (isRGB) {
-        e.target.style.backgroundColor = rgbMode();
+        let tempColor = rgbMode()
+        e.target.style.backgroundColor = tempColor;
+        e.target.style.border = '1px solid ' + tempColor;
     }
     else if (isLighten) {
-        e.target.style.backgroundColor = lightenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+        let tempColor = lightenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+        e.target.style.backgroundColor = tempColor;
+        e.target.style.border = '1px solid ' + tempColor;
     }
     else if (isDarken) {
-        e.target.style.backgroundColor = darkenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+        let tempColor = darkenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+        e.target.style.backgroundColor = tempColor;
+        e.target.style.border = '1px solid ' + tempColor;
     }
     else {
         e.target.style.backgroundColor = 'black';
+        e.target.style.border = '1px solid black';
     }
 }
 
@@ -58,16 +65,23 @@ function changeColorsHover(e) {
     if (isMouseDown)
     {
         if (isRGB) {
-            e.target.style.backgroundColor = rgbMode();
+            let tempColor = rgbMode()
+            e.target.style.backgroundColor = tempColor;
+            e.target.style.border = '1px solid ' + tempColor;
         }
         else if (isLighten) {
-            e.target.style.backgroundColor = lightenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+            let tempColor = lightenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+            e.target.style.backgroundColor = tempColor;
+            e.target.style.border = '1px solid ' + tempColor;
         }
         else if (isDarken) {
-            e.target.style.backgroundColor = darkenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+            let tempColor = darkenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+            e.target.style.backgroundColor = tempColor;
+            e.target.style.border = '1px solid ' + tempColor;
         }
         else {
             e.target.style.backgroundColor = 'black';
+            e.target.style.border = '1px solid black';
         }
     }
 }
