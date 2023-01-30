@@ -1,7 +1,8 @@
 let gridSize = 16;
 
 let isRGB = false;
-let isGrayScale = false;
+let isLighten = false;
+let isDarken = false;
 
 let isMouseDown = false;
 document.body.onmousedown = () => (isMouseDown = true)
@@ -10,11 +11,13 @@ document.body.onmouseup = () => (isMouseDown = false)
 const grids = document.getElementById('grids');
 const sizeBtn = document.getElementById('sizeBtn');
 const rgbBtn = document.getElementById('rgbBtn');
-const grayScaleBtn = document.getElementById('grayScaleBtn');
+const lightenBtn = document.getElementById('lightenBtn');
+const darkenBtn = document.getElementById('darkenBtn')
 
 sizeBtn.addEventListener('click', changeGridSize);
 rgbBtn.addEventListener('click', activateRGBMode);
-grayScaleBtn.addEventListener('click', activateGrayScaleMode);
+lightenBtn.addEventListener('click', activateLightenMode);
+darkenBtn.addEventListener('click', activateDarkenMode);
 
 function displayGrid() {
     grids.style.gridTemplateColumns = 'repeat(' + gridSize + ', 2fr)';
@@ -40,8 +43,11 @@ function changeColors(e) {
     if (isRGB) {
         e.target.style.backgroundColor = rgbMode();
     }
-    else if (isGrayScale) {
-        e.target.style.backgroundColor = grayScaleMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+    else if (isLighten) {
+        e.target.style.backgroundColor = lightenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+    }
+    else if (isDarken) {
+        e.target.style.backgroundColor = darkenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
     }
     else {
         e.target.style.backgroundColor = 'black';
@@ -54,8 +60,11 @@ function changeColorsHover(e) {
         if (isRGB) {
             e.target.style.backgroundColor = rgbMode();
         }
-        else if (isGrayScale) {
-            e.target.style.backgroundColor = grayScaleMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+        else if (isLighten) {
+            e.target.style.backgroundColor = lightenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
+        }
+        else if (isDarken) {
+            e.target.style.backgroundColor = darkenMode(getComputedStyle(e.target).getPropertyValue('background-color'));
         }
         else {
             e.target.style.backgroundColor = 'black';
@@ -82,7 +91,11 @@ function changeGridSize() {
 
 function activateRGBMode() {
     if (!isRGB)
+    {
         isRGB = true;
+        isDarken = false;
+        isLighten = false;
+    }
     else
         isRGB = false;
 }
@@ -95,14 +108,18 @@ function rgbMode() {
     return newRGB;
 }
 
-function activateGrayScaleMode() {
-    if (!isGrayScale)
-        isGrayScale = true;
+function activateLightenMode() {
+    if (!isLighten)
+    {
+        isLighten = true;
+        isDarken = false;
+        isRGB = false;
+    }
     else
-        isGrayScale = false;
+        isLighten = false;
 }
 
-function grayScaleMode(color) {
+function lightenMode(color) {
     let colorArr = color.slice(
         color.indexOf("(") + 1, 
         color.indexOf(")")
@@ -111,6 +128,31 @@ function grayScaleMode(color) {
     let r = Math.min(Math.max(+colorArr[0] + 26, 0), 255);
     let g = Math.min(Math.max(+colorArr[1] + 26, 0), 255);
     let b = Math.min(Math.max(+colorArr[2] + 26, 0), 255);
+
+    let newRGB = 'rgb(' + r + ',' + g + ',' + b + ')';
+    return newRGB;
+}
+
+function activateDarkenMode() {
+    if (!isDarken)
+    {
+        isDarken = true;
+        isLighten = false;
+        isRGB = false;
+    }
+    else
+        isDarken = false;
+}
+
+function darkenMode(color) {
+    let colorArr = color.slice(
+        color.indexOf("(") + 1, 
+        color.indexOf(")")
+    ).split(", ");
+    
+    let r = Math.min(Math.max(+colorArr[0] - 26, 0), 255);
+    let g = Math.min(Math.max(+colorArr[1] - 26, 0), 255);
+    let b = Math.min(Math.max(+colorArr[2] - 26, 0), 255);
 
     let newRGB = 'rgb(' + r + ',' + g + ',' + b + ')';
     return newRGB;

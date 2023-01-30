@@ -22,6 +22,7 @@
 
 #gridBox {
     border: 1px solid black;
+    background-color: white;
     user-select: none;
 }
 
