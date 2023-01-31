@@ -15,12 +15,14 @@ const rgbBtn = document.getElementById('rgbBtn');
 const lightenBtn = document.getElementById('lightenBtn');
 const darkenBtn = document.getElementById('darkenBtn');
 const eraseBtn = document.getElementById('eraseBtn');
+const clearBtn = document.getElementById('clearBtn');
 
-sizeBtn.addEventListener('click', changeGridSize);
+sizeBtn.addEventListener('click', askGridSize);
 rgbBtn.addEventListener('click', activateRGBMode);
 lightenBtn.addEventListener('click', activateLightenMode);
 darkenBtn.addEventListener('click', activateDarkenMode);
 eraseBtn.addEventListener('click', activateEraseMode);
+clearBtn.addEventListener('click', clearGrids);
 
 function displayGrid() {
     grids.style.gridTemplateColumns = 'repeat(' + gridSize + ', 2fr)';
@@ -97,15 +99,19 @@ function changeColorsHover(e) {
     }
 }
 
-function changeGridSize() {
+function askGridSize() {
     gridSize = prompt('How big?');
-    if(gridSize > 64){
+    changeGridSize(gridSize);
+}
+
+function changeGridSize(size) {
+    if(size > 64){
         console.log('Too big of a number');
     }
-    else if(gridSize < 1){
+    else if(size < 1){
         console.log('Too small of a number');
     }
-    else if(isNaN(gridSize)) {
+    else if(isNaN(size)) {
         console.log('Please enter a number');
     }
     else {
@@ -196,6 +202,10 @@ function activateEraseMode() {
     }
     else
         isErase = false;
+}
+
+function clearGrids() {
+    changeGridSize(gridSize);
 }
 
 displayGrid();
