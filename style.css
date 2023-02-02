@@ -5,9 +5,8 @@
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
 }
 
 #grids {
@@ -26,3 +25,8 @@
     user-select: none;
 }
 
+.button {
+    display: flex;
+    flex-direction: column;
+    order: -1;
+}

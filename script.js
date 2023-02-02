@@ -10,6 +10,8 @@ document.body.onmousedown = () => (isMouseDown = true)
 document.body.onmouseup = () => (isMouseDown = false)
 
 const grids = document.getElementById('grids');
+const slider = document.getElementById('myRange');
+const sliderValue = document.getElementById('sliderValue');
 const sizeBtn = document.getElementById('sizeBtn');
 const rgbBtn = document.getElementById('rgbBtn');
 const lightenBtn = document.getElementById('lightenBtn');
@@ -17,6 +19,7 @@ const darkenBtn = document.getElementById('darkenBtn');
 const eraseBtn = document.getElementById('eraseBtn');
 const clearBtn = document.getElementById('clearBtn');
 
+slider.addEventListener('input', sliderGridSize);
 sizeBtn.addEventListener('click', askGridSize);
 rgbBtn.addEventListener('click', activateRGBMode);
 lightenBtn.addEventListener('click', activateLightenMode);
@@ -97,6 +100,13 @@ function changeColorsHover(e) {
             e.target.style.border = '1px solid black';
         }
     }
+}
+
+function sliderGridSize() {
+    gridSize = slider.value;
+    sliderValue.textContent = gridSize;
+    removeGrid();
+    displayGrid();
 }
 
 function askGridSize() {
