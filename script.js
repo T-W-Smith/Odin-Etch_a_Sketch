@@ -10,7 +10,8 @@ document.body.onmousedown = () => (isMouseDown = true)
 document.body.onmouseup = () => (isMouseDown = false)
 
 const grids = document.getElementById('grids');
-const slider = document.getElementById('myRange');
+const color = document.getElementById('mycolor')
+const slider = document.getElementById('myrange');
 const sliderValue = document.getElementById('sliderValue');
 const rgbBtn = document.getElementById('rgbBtn');
 const lightenBtn = document.getElementById('lightenBtn');
@@ -66,8 +67,8 @@ function changeColors(e) {
         e.target.style.border = '1px solid gray';
     }
     else {
-        e.target.style.backgroundColor = 'black';
-        e.target.style.border = '1px solid black';
+        e.target.style.backgroundColor = color.value;
+        e.target.style.border = '1px solid ' + color.value;
     }
 }
 
@@ -94,8 +95,8 @@ function changeColorsHover(e) {
             e.target.style.border = '1px solid gray';
         }
         else {
-            e.target.style.backgroundColor = 'black';
-            e.target.style.border = '1px solid black';
+            e.target.style.backgroundColor = color.value;
+            e.target.style.border = '1px solid ' + color.value;
         }
     }
 }
