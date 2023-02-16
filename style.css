@@ -66,6 +66,10 @@ button {
     background: white;
 }
 
+button:hover {
+    background: lightgray;
+}
+
 .slidecontainer {
     display: flex;
     flex-direction: column;

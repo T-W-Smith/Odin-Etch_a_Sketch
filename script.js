@@ -115,9 +115,17 @@ function activateRGBMode() {
         isDarken = false;
         isLighten = false;
         isErase = false;
+        rgbBtn.style.background = 'gray';
+        lightenBtn.style.background = '';
+        darkenBtn.style.background = '';
+        eraseBtn.style.background = '';
     }
     else
+    {
         isRGB = false;
+        rgbBtn.style.background = '';
+    }
+
 }
 
 function rgbMode() {
@@ -135,9 +143,16 @@ function activateLightenMode() {
         isDarken = false;
         isRGB = false;
         isErase = false;
+        lightenBtn.style.background = 'gray';
+        rgbBtn.style.background = '';
+        darkenBtn.style.background = '';
+        eraseBtn.style.background = '';
     }
     else
+    {
         isLighten = false;
+        lightenBtn.style.background = '';
+    }
 }
 
 function lightenMode(color) {
@@ -161,9 +176,16 @@ function activateDarkenMode() {
         isLighten = false;
         isRGB = false;
         isErase = false;
+        darkenBtn.style.background = 'gray';
+        lightenBtn.style.background = '';
+        rgbBtn.style.background = '';
+        eraseBtn.style.background = '';
     }
     else
+    {
         isDarken = false;
+        darkenBtn.style.background = '';
+    }
 }
 
 function darkenMode(color) {
@@ -187,13 +209,33 @@ function activateEraseMode() {
         isRGB = false;
         isDarken = false;
         isLighten = false;
+        eraseBtn.style.background = 'gray';
+        lightenBtn.style.background = '';
+        darkenBtn.style.background = '';
+        rgbBtn.style.background = '';
     }
     else
+    {
         isErase = false;
+        eraseBtn.style.background = '';
+    }
 }
 
 function clearGrids() {
-    changeGridSize(gridSize);
+    removeGrid();
+    displayGrid();
+    isRGB = false;
+    isLighten = false;
+    isDarken = false;
+    isErase = false;
+    clearBtn.style.background = 'gray';
+    eraseBtn.style.background = '';
+    lightenBtn.style.background = '';
+    darkenBtn.style.background = '';
+    rgbBtn.style.background = '';
+    setTimeout(function(){
+        clearBtn.style.background = '';
+    }, 250);
 }
 
 displayGrid();
