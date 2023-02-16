@@ -12,7 +12,6 @@ document.body.onmouseup = () => (isMouseDown = false)
 const grids = document.getElementById('grids');
 const slider = document.getElementById('myRange');
 const sliderValue = document.getElementById('sliderValue');
-const sizeBtn = document.getElementById('sizeBtn');
 const rgbBtn = document.getElementById('rgbBtn');
 const lightenBtn = document.getElementById('lightenBtn');
 const darkenBtn = document.getElementById('darkenBtn');
@@ -20,7 +19,6 @@ const eraseBtn = document.getElementById('eraseBtn');
 const clearBtn = document.getElementById('clearBtn');
 
 slider.addEventListener('input', sliderGridSize);
-sizeBtn.addEventListener('click', askGridSize);
 rgbBtn.addEventListener('click', activateRGBMode);
 lightenBtn.addEventListener('click', activateLightenMode);
 darkenBtn.addEventListener('click', activateDarkenMode);
@@ -104,30 +102,9 @@ function changeColorsHover(e) {
 
 function sliderGridSize() {
     gridSize = slider.value;
-    sliderValue.textContent = gridSize;
+    sliderValue.textContent = gridSize + ' x ' + gridSize;
     removeGrid();
     displayGrid();
-}
-
-function askGridSize() {
-    gridSize = prompt('How big?');
-    changeGridSize(gridSize);
-}
-
-function changeGridSize(size) {
-    if(size > 64){
-        console.log('Too big of a number');
-    }
-    else if(size < 1){
-        console.log('Too small of a number');
-    }
-    else if(isNaN(size)) {
-        console.log('Please enter a number');
-    }
-    else {
-        removeGrid();
-        displayGrid();
-    }
 }
 
 function activateRGBMode() {
