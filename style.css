@@ -13,6 +13,7 @@
     align-items: center;
 }
 
+/* Coloring grid styling */
 #grids {
     display: inline-grid;
     grid-template-columns: repeat(16, 2fr);
@@ -29,12 +30,7 @@
     user-select: none;
 }
 
-.button {
-    display: flex;
-    flex-direction: column;
-    order: -1;
-}
-
+/* Color picker styling */
 .colorpickercontainer {
     display: flex;
     justify-content: center;
@@ -57,6 +53,13 @@
     border: none
 }
 
+/* Button styling */
+.button {
+    display: flex;
+    flex-direction: column;
+    order: -1;
+}
+
 button {
     font-size: x-large;
     padding: 8px 28px;
@@ -70,6 +73,7 @@ button:hover {
     background: lightgray;
 }
 
+/* Slider styling */
 .slidecontainer {
     display: flex;
     flex-direction: column;
@@ -98,6 +102,7 @@ button:hover {
     border-radius: 50%;
 }
 
+/* Header styling */
 .header {
     font-size: xx-large;
     font-weight: bold;
@@ -105,7 +110,19 @@ button:hover {
     margin-bottom: -20px;
 }
 
-.footer{
+/* Footer styling */
+.footer {
     margin-top: 50px;
     font-size: x-large;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: center;
+}
+
+.footer .container img {
+    width: 25px;
+    height: auto;
+    margin: 5px;
 }

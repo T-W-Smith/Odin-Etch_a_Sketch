@@ -1,5 +1,6 @@
 let gridSize = 16;
 
+// Button bool
 let isRGB = false;
 let isLighten = false;
 let isDarken = false;
@@ -9,6 +10,7 @@ let isMouseDown = false;
 document.body.onmousedown = () => (isMouseDown = true)
 document.body.onmouseup = () => (isMouseDown = false)
 
+// Elements
 const grids = document.getElementById('grids');
 const color = document.getElementById('mycolor')
 const slider = document.getElementById('myrange');
@@ -19,6 +21,7 @@ const darkenBtn = document.getElementById('darkenBtn');
 const eraseBtn = document.getElementById('eraseBtn');
 const clearBtn = document.getElementById('clearBtn');
 
+// Event listeners
 slider.addEventListener('input', sliderGridSize);
 rgbBtn.addEventListener('click', activateRGBMode);
 lightenBtn.addEventListener('click', activateLightenMode);
@@ -26,6 +29,7 @@ darkenBtn.addEventListener('click', activateDarkenMode);
 eraseBtn.addEventListener('click', activateEraseMode);
 clearBtn.addEventListener('click', clearGrids);
 
+// Populates the coloring grid
 function displayGrid() {
     grids.style.gridTemplateColumns = 'repeat(' + gridSize + ', 2fr)';
     grids.style.gridTemplateRows = 'repeat(' + gridSize + ', 2fr)';
@@ -40,12 +44,14 @@ function displayGrid() {
     }
 }
 
+// Removes the coloring grid
 function removeGrid() {
     while(grids.lastElementChild) {
         grids.removeChild(grids.lastElementChild);
     }
 }
 
+// Changes the coloring mode based on the user selection
 function changeColors(e) {
     if (isRGB) {
         let tempColor = rgbMode()
@@ -72,6 +78,8 @@ function changeColors(e) {
     }
 }
 
+// Colors each individual gridbox when the mouse is pressed
+// and hovering over the gridbox
 function changeColorsHover(e) {
     if (isMouseDown)
     {
@@ -101,6 +109,7 @@ function changeColorsHover(e) {
     }
 }
 
+// Sets the gridsize based on the slider value
 function sliderGridSize() {
     gridSize = slider.value;
     sliderValue.textContent = gridSize + ' x ' + gridSize;
@@ -108,6 +117,7 @@ function sliderGridSize() {
     displayGrid();
 }
 
+// Activates RGB coloring mode
 function activateRGBMode() {
     if (!isRGB)
     {
@@ -128,6 +138,7 @@ function activateRGBMode() {
 
 }
 
+// Sets a random color for RGB coloring mode
 function rgbMode() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
@@ -136,6 +147,7 @@ function rgbMode() {
     return newRGB;
 }
 
+// Activates lighten coloring mode
 function activateLightenMode() {
     if (!isLighten)
     {
@@ -155,6 +167,8 @@ function activateLightenMode() {
     }
 }
 
+// Slowly lightens the color of a gridbox until it is fully white
+// for lighten coloring mode
 function lightenMode(color) {
     let colorArr = color.slice(
         color.indexOf("(") + 1, 
@@ -169,6 +183,7 @@ function lightenMode(color) {
     return newRGB;
 }
 
+// Activates darken coloring mode
 function activateDarkenMode() {
     if (!isDarken)
     {
@@ -188,6 +203,8 @@ function activateDarkenMode() {
     }
 }
 
+// Slowly darkens the color of a gridbox until it is fully black
+// for darken coloring mode
 function darkenMode(color) {
     let colorArr = color.slice(
         color.indexOf("(") + 1, 
@@ -202,6 +219,7 @@ function darkenMode(color) {
     return newRGB;
 }
 
+// Activates Erase Mode
 function activateEraseMode() {
     if (!isErase)
     {
@@ -221,6 +239,7 @@ function activateEraseMode() {
     }
 }
 
+// Completely clears the entire grid/resets everything
 function clearGrids() {
     removeGrid();
     displayGrid();
@@ -238,4 +257,5 @@ function clearGrids() {
     }, 250);
 }
 
+// Displays the grid
 displayGrid();
